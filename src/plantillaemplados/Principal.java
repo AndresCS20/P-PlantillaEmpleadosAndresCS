@@ -59,6 +59,7 @@ public class Principal {
 						System.out.println("ID: "+(i+1)+", "+empleado.get(i));
 					}
 				}
+				//Modulo no terminado falta hacer que eliga un empleado y calcule el sueldo y la indemnizacion
 			break;
 			
 			case 3:
