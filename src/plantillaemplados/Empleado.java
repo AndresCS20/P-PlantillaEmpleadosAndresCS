@@ -17,6 +17,34 @@ public class Empleado implements Cobros {
 	//---------Metodos----------//
 	
 	@Override
+	public String toString() {
+		String nombrePuesto="";
+		
+		switch (puesto-1) {
+		case 0:
+			nombrePuesto="Mozo de Almacen";
+			break;
+		case 1:
+			nombrePuesto="Jefe de Seccion";
+			break;
+		case 2:
+			nombrePuesto="Jefe de Planta";
+			break;
+		case 3:
+			nombrePuesto="Personal de administracion";
+			break;
+		case 4:
+			nombrePuesto="Directivo";
+			break;			
+
+		}
+		
+		return "Nombre:" + nombre + ", Apellidos:" + apellido1 + " " + apellido2 + ", DNI:" + dni
+				+ ", Puesto:" + nombrePuesto + ", Antiguedad:" + antiguedad + ", anios y " + tiempototal + " dias";
+	}
+	
+	
+	@Override
 	public double sueldoNeto() {
 
 		return 0;
@@ -89,4 +117,5 @@ public class Empleado implements Cobros {
 	public void setTiempototal(int tiempototal) {
 		this.tiempototal = tiempototal;
 	}
+
 }

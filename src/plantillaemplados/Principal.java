@@ -13,12 +13,19 @@ public class Principal {
 	public static JefeSeccion jefeseccion0=new JefeSeccion("Paquito","El","Chocolatero","99994535a",2,2,4,250);
 	public static JefeSeccion jefeseccion1=new JefeSeccion("Ramonchu","Cadiz","Sevilla","34545434z",2,1,3,160);
 	public static JefePlanta jefeplanta0=new JefePlanta("Alejandra","Mira","Cuenca","123456790c",3,1,5,230);
-	public static Administracion administraccion0=new Administracion("Luisito","Comunica","Mucho","5445535c",4,8,1);
+	public static Administracion administracion0=new Administracion("Luisito","Comunica","Mucho","5445535c",4,8,1);
 	public static Directivo directivo0=new Directivo("Lola","Mentos","Perez","905535f",5,12,360);
 	
-
 	
 	public static void main(String[] args) {
+		empleado.add(mozoalmacen0);
+		empleado.add(mozoalmacen1);
+		empleado.add(jefeseccion0);
+		empleado.add(jefeseccion1);
+		empleado.add(jefeplanta0);
+		empleado.add(administracion0);
+		empleado.add(directivo0);
+		
 		int opcion=0;
 		while (true) {
 		do {
@@ -47,6 +54,11 @@ public class Principal {
 			
 			case 2:
 				System.out.println("[3] - Listrado trabajadores");
+				if (empleado.size()>0) {
+					for (int i=0; i<empleado.size(); i++) {
+						System.out.println("ID: "+(i+1)+", "+empleado.get(i));
+					}
+				}
 			break;
 			
 			case 3:
@@ -55,6 +67,16 @@ public class Principal {
 			
 			case 4:
 				System.out.println("[5] - Avance temporal");
+				int numdias=0;
+				do {
+				System.out.println("Cuantos dias quieres que avance?");
+				numdias = introducirNumeroEntero(opcion);
+				} while (numdias < 0);
+				dia+=numdias;
+				//FALTA AÑADIR EL MODULO QUE REVISE EL NUMERO DE DIAS QUE TIENE UN EMPLEADO
+				// Y CAMBIE EL AÑO DE ANTIGUEDAD SI EL NUMERO DE DIAS ES MAYOR A 365 
+					
+				//TAMBIEN TIENE QUE AÑADIR EL NUMERO DE DIAS A LOS EMPLEADOS
 			break;
 			case 5:
 				System.out.println("[6] - Mostrar matriz dias trabajados");
