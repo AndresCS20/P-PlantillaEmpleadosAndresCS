@@ -28,6 +28,10 @@ public class JefePlanta  extends Empleado {
 		this.categoria = categoria;
 	}
 
+	public JefePlanta(String nombre, String apellido1, String apellido2, String dni, int puesto, int tiempototal, int categoria) {
+		super(nombre, apellido1, apellido2, dni, puesto, tiempototal);
+		this.categoria = categoria;
+	}
 	//----Setters && Getters----//
 
 	public double getSueldoBruto() {

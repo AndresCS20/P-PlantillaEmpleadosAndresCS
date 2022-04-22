@@ -10,7 +10,13 @@ public class MozoAlmacen extends Empleado {
 	
 	@Override
 	public double sueldoNeto() {
-
+		
+		double calcsueldoBruto=this.getSueldoBruto();
+		
+		int porcentajeBruto=85;
+		
+		//System.out.println((calcsueldoBruto*(0.0*porcentajeBruto));
+		
 		return 0;
 	}
 	@Override
@@ -24,6 +30,10 @@ public class MozoAlmacen extends Empleado {
 	public MozoAlmacen(String nombre, String apellido1, String apellido2, String dni, int puesto, int antiguedad,
 			int tiempototal) {
 		super(nombre, apellido1, apellido2, dni, puesto, antiguedad, tiempototal);
+	}
+	
+	public MozoAlmacen(String nombre, String apellido1, String apellido2, String dni, int puesto,int tiempototal) {
+		super(nombre, apellido1, apellido2, dni, puesto,tiempototal);
 	}
 	
 	//----Setters && Getters----//

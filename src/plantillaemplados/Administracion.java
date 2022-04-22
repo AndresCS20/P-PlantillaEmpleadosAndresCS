@@ -27,6 +27,10 @@ public class Administracion  extends Empleado {
 		super(nombre, apellido1, apellido2, dni, puesto, antiguedad, tiempototal);
 	}
 	
+	public Administracion(String nombre, String apellido1, String apellido2, String dni, int puesto,int tiempototal) {
+		super(nombre, apellido1, apellido2, dni, puesto,tiempototal);
+	}
+	
 	//----Setters && Getters----//
 
 	public double getSueldoBruto() {

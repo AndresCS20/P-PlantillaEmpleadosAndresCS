@@ -6,7 +6,7 @@ public class Principal {
 
 	public static Scanner scString=new Scanner(System.in);
 	public static int dia=0;
-	public static ArrayList <Empleado> empleado=new ArrayList();
+	public static ArrayList <Empleado> empleados=new ArrayList();
 
 	public static MozoAlmacen mozoalmacen0=new MozoAlmacen("Pepe","Phone","House","5124535a",1,1,120);
 	public static MozoAlmacen mozoalmacen1=new MozoAlmacen("Aurelio","Martinez","Sancho","5445535c",1,1,60);
@@ -18,13 +18,13 @@ public class Principal {
 	
 	
 	public static void main(String[] args) {
-		empleado.add(mozoalmacen0);
-		empleado.add(mozoalmacen1);
-		empleado.add(jefeseccion0);
-		empleado.add(jefeseccion1);
-		empleado.add(jefeplanta0);
-		empleado.add(administracion0);
-		empleado.add(directivo0);
+		empleados.add(mozoalmacen0);
+		empleados.add(mozoalmacen1);
+		empleados.add(jefeseccion0);
+		empleados.add(jefeseccion1);
+		empleados.add(jefeplanta0);
+		empleados.add(administracion0);
+		empleados.add(directivo0);
 		
 		int opcion=0;
 		while (true) {
@@ -45,20 +45,23 @@ public class Principal {
 			
 			switch (opcion-1) {
 			case 0:
-				System.out.println("[1] - Introducir trabajador");
+				introducirEmpleado(opcion);
 			break;
 			
 			case 1:
 				System.out.println("[2] - Eliminar trabajador");
+				//SI EL EMPLEADO NO TRABAJA 1 AÑO EXACTO NO COBRA POR PRINGADO
 			break;
 			
 			case 2:
 				System.out.println("[3] - Listrado trabajadores");
-				if (empleado.size()>0) {
-					for (int i=0; i<empleado.size(); i++) {
-						System.out.println("ID: "+(i+1)+", "+empleado.get(i));
+				if (empleados.size()>0) {
+					for (int i=0; i<empleados.size(); i++) {
+						System.out.println("ID: "+(i+1)+", "+empleados.get(i));
 					}
 				}
+				
+				mozoalmacen0.sueldoNeto();
 				//Modulo no terminado falta hacer que eliga un empleado y calcule el sueldo y la indemnizacion
 			break;
 			
@@ -94,11 +97,101 @@ public class Principal {
 		
 		}
 	}
+
+	private static void introducirEmpleado(int opcion) {
+		String nombre="";
+		String apellido1="";
+		String apellido2="";
+		String dni="";
+		int puesto=0;
+		int categoria=0;
+		int diasantiguedad=0;
+		int aniosantiguedad=0;
+		boolean verificacionCategoria=false;
+		
+		System.out.println("[1] - Introducir trabajador");
+		
+		do {
+		System.out.println("Introduce el nombre");
+		nombre=scString.nextLine();
+		}while (nombre=="");
+		
+		do{
+		System.out.println("Introduce el apellido 1");
+		apellido1=scString.nextLine();
+		}while (apellido1=="");
+		
+		do {
+		System.out.println("Introduce el apellido 2");
+		apellido2=scString.nextLine();
+		}while (apellido2=="");
+		
+		do {
+		System.out.println("Introduce el dni");
+		dni=scString.nextLine();
+		}while (dni=="");
+		
+		do {
+		System.out.println("Introduce el puesto");
+		puesto=introducirNumeroEntero(opcion);
+		}while (puesto<1 || puesto>5);
+		if (puesto==2 || puesto==3) {
+			do {
+				System.out.println("Introduce la categoria");
+				categoria=introducirNumeroEntero(opcion);
+		
+				if (puesto==2 && (categoria>0  && categoria <4)) {
+					verificacionCategoria=true;
+				
+				}
+			
+				if (puesto==3 && (categoria>0  && categoria <5)) {
+					verificacionCategoria=true;
+				}
+			}while (!verificacionCategoria);
+		}
+
+		do{			
+		System.out.println("Introduce la antiguedad en anios");
+		aniosantiguedad=introducirNumeroEntero(opcion);
+		}while (aniosantiguedad<1);
+		
+		do{			
+		System.out.println("Introduce la antiguedad en dias");
+		diasantiguedad=introducirNumeroEntero(opcion);
+		}while (diasantiguedad<1 || diasantiguedad>364);
+
+		switch (puesto) {
+		case 1:
+			MozoAlmacen mozoAlmacen =new MozoAlmacen(nombre, apellido1, apellido2, dni, puesto, aniosantiguedad, diasantiguedad);
+			empleados.add(mozoAlmacen);
+			break;
+
+		case 2:
+			JefeSeccion jefeSeccion =new JefeSeccion(nombre, apellido1, apellido2, dni, puesto, aniosantiguedad, diasantiguedad,categoria);
+			empleados.add(jefeSeccion);
+			break;
+		case 3:
+			JefePlanta jefePlanta =new JefePlanta(nombre, apellido1, apellido2, dni, puesto, aniosantiguedad, diasantiguedad,categoria);
+			empleados.add(jefePlanta);
+			break;
+		case 4:
+			Administracion administracion =new Administracion(nombre, apellido1, apellido2, dni, puesto, aniosantiguedad,  diasantiguedad);
+			empleados.add(administracion);
+			break;
+		case 5:
+			Directivo directivo =new Directivo(nombre, apellido1, apellido2, dni, puesto, aniosantiguedad,  diasantiguedad);
+			empleados.add(directivo);
+			break;	
+			
+		}
+	}
 	
 	//Try-Catch para Double y para Int
 	private static int introducirNumeroEntero(int opcion) {
 		String texto;
 		boolean correcto=false;
+		
 		do {
 		try {
 			texto = scString.nextLine();

@@ -68,6 +68,16 @@ public class Empleado implements Cobros {
 		this.tiempototal = tiempototal;
 	}
 	
+	public Empleado(String nombre, String apellido1, String apellido2, String dni, int puesto,int tiempototal) {
+		super();
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.dni = dni;
+		this.puesto = puesto;
+		this.tiempototal = tiempototal;
+	}
+	
 	public Empleado () {
 
 	}	

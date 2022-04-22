@@ -27,6 +27,11 @@ public class JefeSeccion  extends Empleado {
 		super(nombre, apellido1, apellido2, dni, puesto, antiguedad, tiempototal);
 		this.categoria = categoria;
 	}
+	
+	public JefeSeccion(String nombre, String apellido1, String apellido2, String dni, int puesto, int tiempototal, int categoria) {
+		super(nombre, apellido1, apellido2, dni, puesto, tiempototal);
+		this.categoria = categoria;
+	}
 
 	//----Setters && Getters----//
 
