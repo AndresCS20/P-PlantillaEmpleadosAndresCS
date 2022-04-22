@@ -49,8 +49,7 @@ public class Principal {
 			break;
 			
 			case 1:
-				System.out.println("[2] - Eliminar trabajador");
-				//SI EL EMPLEADO NO TRABAJA 1 AÑO EXACTO NO COBRA POR PRINGADO
+				eliminarEmpleado();
 			break;
 			
 			case 2:
@@ -61,12 +60,15 @@ public class Principal {
 					}
 				}
 				
+				else System.err.println("ERROR: No hay empleados para poder mostrar");
 				mozoalmacen0.sueldoNeto();
 				//Modulo no terminado falta hacer que eliga un empleado y calcule el sueldo y la indemnizacion
+				//SI EL EMPLEADO NO TRABAJA 1 AÑO EXACTO NO COBRA POR PRINGADO
+
 			break;
 			
 			case 3:
-				System.out.println("[4] - Listado trabajadores por puesto");
+				verListadoPorPuesto(opcion);	
 			break;
 			
 			case 4:
@@ -96,6 +98,85 @@ public class Principal {
 			}
 		
 		}
+	}
+
+	private static void verListadoPorPuesto(int opcion) {
+		int opcionsubmenu=0;
+		System.out.println("[4] - Listado trabajadores por puesto");
+		if (empleados.size()>0) {
+		
+			System.out.println("\t(1) Mozos de Almacen");
+			System.out.println("\t(2) Jefes de Seccion");
+			System.out.println("\t(3) Jefes de Planta");
+			System.out.println("\t(4) Personal de Administracion");
+			System.out.println("\t(5) Directivos");
+			System.out.println(">> Introduce un numero (1-5) para elegir un tipo de empleado para poder observar el listado");
+			do {
+				opcionsubmenu=introducirNumeroEntero(opcion);
+			}while (opcionsubmenu<0 || opcionsubmenu>5);
+			
+				switch (opcionsubmenu) {
+				case 1:
+					for (int i=0;i<empleados.size(); i++) {
+						if (empleados.get(i) instanceof MozoAlmacen) {
+							System.out.println(empleados.get(i));
+						}
+					}
+					break;
+				case 2:
+					for (int i=0;i<empleados.size(); i++) {
+						if (empleados.get(i) instanceof JefeSeccion) {
+							System.out.println(empleados.get(i));
+						}
+					}
+					break;
+				case 3:
+					for (int i=0;i<empleados.size(); i++) {
+						if (empleados.get(i) instanceof JefePlanta) {
+							System.out.println(empleados.get(i));
+						}
+					}
+					break;
+				case 4:
+					for (int i=0;i<empleados.size(); i++) {
+						if (empleados.get(i) instanceof Administracion) {
+							System.out.println(empleados.get(i));
+						}
+					}
+					break;
+				case 5:
+					for (int i=0;i<empleados.size(); i++) {
+						if (empleados.get(i) instanceof Directivo) {
+							System.out.println(empleados.get(i));
+						}
+					}
+					break;						
+					
+				}
+			}
+
+		else System.err.println("ERROR: No hay empleados para poder mostrar");
+	}
+
+	private static void eliminarEmpleado() {
+		int opcionempleado=0;
+		System.out.println("[2] - Eliminar trabajador");
+		if (empleados.size()>0) {
+			
+			for (int i=0; i<empleados.size(); i++) {
+				System.out.println("ID: "+(i+1)+", "+empleados.get(i));
+			}
+			
+			do {				
+			System.out.println("Introduce la ID del Empleado que quieras eliminar");
+			opcionempleado=introducirNumeroEntero(opcionempleado);
+			}while (opcionempleado<0 || opcionempleado>empleados.size());
+			
+			System.out.println("El empleado " + empleados.get(opcionempleado).getNombre() +" ha sido eliminado.");
+			empleados.remove(opcionempleado);
+		}
+			
+		else System.err.println("ERROR: No hay trabajadores para poder eliminar");
 	}
 
 	private static void introducirEmpleado(int opcion) {
@@ -150,7 +231,7 @@ public class Principal {
 				}
 			}while (!verificacionCategoria);
 		}
-
+		
 		do{			
 		System.out.println("Introduce la antiguedad en anios");
 		aniosantiguedad=introducirNumeroEntero(opcion);
