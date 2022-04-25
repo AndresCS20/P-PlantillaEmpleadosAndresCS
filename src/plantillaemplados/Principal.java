@@ -8,13 +8,13 @@ public class Principal {
 	public static int dia=0;
 	public static ArrayList <Empleado> empleados=new ArrayList();
 
-	public static MozoAlmacen mozoalmacen0=new MozoAlmacen("Pepe","Phone","House","5124535a",1,1,120);
+	public static MozoAlmacen mozoalmacen0=new MozoAlmacen("Pepe","Phone","House","5124535a",1,2,120);
 	public static MozoAlmacen mozoalmacen1=new MozoAlmacen("Aurelio","Martinez","Sancho","5445535c",1,1,60);
 	public static JefeSeccion jefeseccion0=new JefeSeccion("Paquito","El","Chocolatero","99994535a",2,2,4,250);
 	public static JefeSeccion jefeseccion1=new JefeSeccion("Ramonchu","Cadiz","Sevilla","34545434z",2,1,3,160);
 	public static JefePlanta jefeplanta0=new JefePlanta("Alejandra","Mira","Cuenca","123456790c",3,1,5,230);
 	public static Administracion administracion0=new Administracion("Luisito","Comunica","Mucho","5445535c",4,8,1);
-	public static Directivo directivo0=new Directivo("Lola","Mentos","Perez","905535f",5,12,360);
+	public static Directivo directivo0=new Directivo("Lola","Mentos","Perez","905535f",5,12,360,true);
 	
 	
 	public static void main(String[] args) {
@@ -53,15 +53,24 @@ public class Principal {
 			break;
 			
 			case 2:
+				int opcionempleado=0;
 				System.out.println("[3] - Listrado trabajadores");
 				if (empleados.size()>0) {
 					for (int i=0; i<empleados.size(); i++) {
 						System.out.println("ID: "+(i+1)+", "+empleados.get(i));
 					}
 				}
-				
 				else System.err.println("ERROR: No hay empleados para poder mostrar");
-				mozoalmacen0.sueldoNeto();
+				
+				do {
+				System.out.println("Elige un empleado utilizando su ID para ver su sueldo neto y inmdenizacion");					
+				opcionempleado=introducirNumeroEntero(opcion)-1;
+				}while(opcionempleado<0 || opcionempleado>empleados.size());
+				
+				System.out.println("\t\tDatos Empleado");
+				System.out.println("\t- "+empleados.get(opcionempleado));
+				System.out.println("\t- Sueldo Neto: "+empleados.get(opcionempleado).sueldoNeto());
+				//				mozoalmacen0.sueldoNeto();
 				//Modulo no terminado falta hacer que eliga un empleado y calcule el sueldo y la indemnizacion
 				//SI EL EMPLEADO NO TRABAJA 1 AÑO EXACTO NO COBRA POR PRINGADO
 

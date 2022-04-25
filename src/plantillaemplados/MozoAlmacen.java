@@ -11,13 +11,15 @@ public class MozoAlmacen extends Empleado {
 	@Override
 	public double sueldoNeto() {
 		
-		double calcsueldoBruto=this.getSueldoBruto();
+		double calcExtraPorAnio=0;
+		calcExtraPorAnio=(this.getSueldoBruto()*5)/100;
 		
-		int porcentajeBruto=85;
+		double brutoEmpleado=this.getSueldoBruto()+(calcExtraPorAnio*this.getAntiguedad());
 		
-		//System.out.println((calcsueldoBruto*(0.0*porcentajeBruto));
+		double calcSueldoNeto=(brutoEmpleado*85)/100;
+		calcSueldoNeto=Math.round(calcSueldoNeto*100.00)/100.00;
 		
-		return 0;
+		return calcSueldoNeto;
 	}
 	@Override
 	public double indemnizacion() {

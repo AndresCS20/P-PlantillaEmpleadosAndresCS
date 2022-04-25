@@ -11,8 +11,29 @@ public class JefeSeccion  extends Empleado {
 	
 	@Override
 	public double sueldoNeto() {
+		
+		double calcExtraPorAnio=0;
+		calcExtraPorAnio=(this.getSueldoBruto()*7)/100;
+		
+		double brutoEmpleado=this.getSueldoBruto()+(calcExtraPorAnio*this.getAntiguedad());
+		
+		double calcSueldoNeto=(brutoEmpleado*83)/100;
+		calcSueldoNeto=Math.round(calcSueldoNeto*100.00)/100.00;
+		
+		switch (this.categoria) {
+		case 1:
+			calcSueldoNeto+=50;
+			break;
+		case 2:
+			calcSueldoNeto+=100;
+			break;
+		case 3:
+			calcSueldoNeto+=150;
+			break;			
 
-		return 0;
+		}
+		
+		return calcSueldoNeto;
 	}
 	@Override
 	public double indemnizacion() {

@@ -11,8 +11,16 @@ public class Administracion  extends Empleado {
 	
 	@Override
 	public double sueldoNeto() {
-
-		return 0;
+		
+		double calcExtraPorAnio=0;
+		calcExtraPorAnio=(this.getSueldoBruto()*6)/100;
+		
+		double brutoEmpleado=this.getSueldoBruto()+(calcExtraPorAnio*this.getAntiguedad());
+		
+		double calcSueldoNeto=(brutoEmpleado*84)/100;
+		calcSueldoNeto=Math.round(calcSueldoNeto*100.00)/100.00;
+		
+		return calcSueldoNeto;
 	}
 	@Override
 	public double indemnizacion() {
