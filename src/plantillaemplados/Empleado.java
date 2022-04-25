@@ -55,6 +55,19 @@ public class Empleado implements Cobros {
 		return 0;
 	}	
 	
+	public void tiempoTotal(int numdias) {
+		int anios=0;
+		this.tiempototal+=numdias;
+		
+		if (tiempototal>=365) {
+			
+		anios=tiempototal/365;
+		tiempototal=tiempototal-(365*anios);
+		antiguedad+=anios;
+		}
+		
+	}
+	
 	//------Constructores-------//
 	
 	public Empleado(String nombre, String apellido1, String apellido2, String dni, int puesto, int antiguedad,int tiempototal) {

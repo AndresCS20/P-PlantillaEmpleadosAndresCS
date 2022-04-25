@@ -72,17 +72,7 @@ public class Principal {
 			break;
 			
 			case 4:
-				System.out.println("[5] - Avance temporal");
-				int numdias=0;
-				do {
-				System.out.println("Cuantos dias quieres que avance?");
-				numdias = introducirNumeroEntero(opcion);
-				} while (numdias < 0);
-				dia+=numdias;
-				//FALTA AÑADIR EL MODULO QUE REVISE EL NUMERO DE DIAS QUE TIENE UN EMPLEADO
-				// Y CAMBIE EL AÑO DE ANTIGUEDAD SI EL NUMERO DE DIAS ES MAYOR A 365 
-					
-				//TAMBIEN TIENE QUE AÑADIR EL NUMERO DE DIAS A LOS EMPLEADOS
+				avanceTemporal(opcion);
 			break;
 			case 5:
 				System.out.println("[6] - Mostrar matriz dias trabajados");
@@ -97,6 +87,22 @@ public class Principal {
 			System.exit(0);
 			}
 		
+		}
+	}
+
+	private static void avanceTemporal(int opcion) {
+		System.out.println("[5] - Avance temporal");
+		int numdias = 0;
+		do {
+			System.out.println("Cuantos dias quieres que avance?");
+			numdias = introducirNumeroEntero(opcion);
+		} while (numdias < 0);
+		dia += numdias;
+
+		for (int i = 0; i < empleados.size(); i++) {
+
+			empleados.get(i).tiempoTotal(numdias);
+
 		}
 	}
 
