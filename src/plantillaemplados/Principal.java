@@ -55,30 +55,7 @@ public class Principal {
 			break;
 			
 			case 2:
-				int opcionempleado=0;
-				System.out.println("[3] - Listrado trabajadores");
-				if (empleados.size()>0) {
-					for (int i=0; i<empleados.size(); i++) {
-						System.out.println("ID: "+(i+1)+", "+empleados.get(i));
-					}
-				}
-				else System.err.println("ERROR: No hay empleados para poder mostrar");
-				
-				do {
-				System.out.println("Elige un empleado utilizando su ID para ver su sueldo neto y inmdenizacion");					
-				opcionempleado=introducirNumeroEntero(opcion)-1;
-				}while(opcionempleado<0 || opcionempleado>empleados.size());
-				
-				System.out.println("\t\tDatos Empleado");
-				System.out.println("\t- "+empleados.get(opcionempleado));
-				System.out.println("\t- Sueldo Neto Final: "+empleados.get(opcionempleado).sueldoNeto()+"\n");
-			
-				
-				System.out.println("\t- Inmdenizacion Final: "+empleados.get(opcionempleado).indemnizacion()+"\n");
-				//				mozoalmacen0.sueldoNeto();
-				//Modulo no terminado falta hacer que eliga un empleado y calcule el sueldo y la indemnizacion
-				//SI EL EMPLEADO NO TRABAJA 1 AÑO EXACTO NO COBRA POR PRINGADO
-
+				listadoTrabajadores(opcion);
 			break;
 			
 			case 3:
@@ -90,6 +67,87 @@ public class Principal {
 			break;
 			case 5:
 				System.out.println("[6] - Mostrar matriz dias trabajados");
+				String matriz[][]=new String[5][4];
+				int diasMozo[]=new int [3];
+				int diasSeccion[]=new int [3];
+				int diasPlanta[]=new int [3];
+				int diasAdmin[]=new int [3];
+				int diasDirect[]=new int [3];
+				
+				int empleadosMozo=0;
+				int empleadosSeccion=0;
+				int empleadosPlanta=0;
+				int empleadosAdmin=0;
+				int empleadosDirectiva=0;
+				
+				for (int i=0; i<empleados.size(); i++) {
+					
+					if (empleados.get(i) instanceof MozoAlmacen) {		
+					empleadosMozo++;
+					}
+					if (empleados.get(i) instanceof JefeSeccion) {		
+					empleadosSeccion++;
+					}
+					if (empleados.get(i) instanceof JefePlanta) {		
+					empleadosPlanta++;
+					}
+					if (empleados.get(i) instanceof Administracion) {		
+					empleadosAdmin++;
+					}
+					if (empleados.get(i) instanceof Directivo) {		
+					empleadosDirectiva++;
+					}
+				}
+				
+				for (int i=0; i<empleados.size(); i++) {
+					
+					if (empleados.get(i) instanceof MozoAlmacen) {
+						
+						int diasCalculado=empleados.get(i).getTiempototal()+(empleados.get(i).getAntiguedad()*365);
+						System.out.println("Empleado "+empleados.get(i).getNombre()+" dias "+diasCalculado);
+					// HACER UN ARRAY DE TAMAÑO EL NUMERO DE EMPLEADOS, 
+						//IR METIENDO TODOS LOS DIAS TOTALES, ORDENAR ARRAY
+						//Y COGER EL PRIMERO Y ULTIMO VALOR
+						int diasTotales=0;
+						
+//						diasMozo[0]=diaMenor;
+//						diasMozo[1]=diaMayor;
+						diasMozo[2]+=diasCalculado;
+					}
+
+				}
+				
+				System.out.println("Dia Menor= "+diasMozo[0]);
+				System.out.println("Dia Mayor= "+diasMozo[1]);
+				System.out.println("Dia Totales= "+diasMozo[2]);
+
+				//RECOGIDA DE DATOS
+				for (int i=0; i<matriz.length; i++) {
+					
+					for (int j=0; j<matriz[i].length; j++) {
+						
+						matriz[i][j]="a";
+						
+					}
+					
+				}
+				
+			System.out.println("\tTipo Empleados\t\t   Menos Dias \t    Mas Dias\t   Media Dias");
+				
+				matriz[0][0]="\t- Mozos Alm\t";
+				matriz[1][0]="\t- P.Seccion\t";
+				matriz[2][0]="\t- P.Plantas\t";
+				matriz[3][0]="\t- Administr\t";
+				matriz[4][0]="\t- Directivo\t";
+				for (int i=0; i<matriz.length; i++) {
+					
+					for (int j=0; j<matriz[i].length; j++) {
+						
+						System.out.print(""+matriz[i][j]+"\t\t");
+						
+					}
+					System.out.println();
+				}
 			break;
 			}
 		
@@ -102,6 +160,27 @@ public class Principal {
 			}
 		
 		}
+	}
+
+	private static void listadoTrabajadores(int opcion) {
+		int opcionempleado=0;
+		System.out.println("[3] - Listrado trabajadores");
+		if (empleados.size()>0) {
+			for (int i=0; i<empleados.size(); i++) {
+				System.out.println("ID: "+(i+1)+", "+empleados.get(i));
+			}
+		}
+		else System.err.println("ERROR: No hay empleados para poder mostrar");
+		
+		do {
+		System.out.println("Elige un empleado utilizando su ID para ver su sueldo neto y inmdenizacion");					
+		opcionempleado=introducirNumeroEntero(opcion)-1;
+		}while(opcionempleado<0 || opcionempleado>empleados.size());
+		
+		System.out.println("\t\tDatos Empleado");
+		System.out.println("\t- "+empleados.get(opcionempleado));
+		System.out.println("\t- Sueldo Neto Final: "+empleados.get(opcionempleado).sueldoNeto()+"\n");
+		System.out.println("\t- Inmdenizacion Final: "+empleados.get(opcionempleado).indemnizacion()+"\n");
 	}
 
 	private static void avanceTemporal(int opcion) {
