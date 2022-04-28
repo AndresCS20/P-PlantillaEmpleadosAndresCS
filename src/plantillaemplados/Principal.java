@@ -10,12 +10,13 @@ public class Principal {
 
 	public static MozoAlmacen mozoalmacen0=new MozoAlmacen("Pepe","Phone","House","5124535a",1,2,120);
 	public static MozoAlmacen mozoalmacen1=new MozoAlmacen("Aurelio","Martinez","Sancho","5445535c",1,1,60);
-	public static JefeSeccion jefeseccion0=new JefeSeccion("Paquito","El","Chocolatero","99994535a",2,2,4,250);
-	public static JefeSeccion jefeseccion1=new JefeSeccion("Ramonchu","Cadiz","Sevilla","34545434z",2,1,3,160);
+	public static JefeSeccion jefeseccion0=new JefeSeccion("Paquito","El","Chocolatero","99994535a",2,2,250,2);
+	public static JefeSeccion jefeseccion1=new JefeSeccion("Ramonchu","Cadiz","Sevilla","34545434z",2,1,160,1);
 	public static JefePlanta jefeplanta0=new JefePlanta("Alejandra","Mira","Cuenca","123456790c",3,1,5,230);
 	public static Administracion administracion0=new Administracion("Luisito","Comunica","Mucho","5445535c",4,8,1);
-	public static Directivo directivo0=new Directivo("Lola","Mentos","Perez","905535f",5,12,360,true);
-	
+	public static Directivo directivo0=new Directivo("Lola","Mentos","Perez","905535f",5,50,360,true);
+	public static Directivo directivo1=new Directivo("Pepe","Ramon","Perez","54545",5,3,120,true);
+
 	
 	public static void main(String[] args) {
 		empleados.add(mozoalmacen0);
@@ -25,7 +26,8 @@ public class Principal {
 		empleados.add(jefeplanta0);
 		empleados.add(administracion0);
 		empleados.add(directivo0);
-		
+		empleados.add(directivo1);
+
 		int opcion=0;
 		while (true) {
 		do {
@@ -69,7 +71,10 @@ public class Principal {
 				
 				System.out.println("\t\tDatos Empleado");
 				System.out.println("\t- "+empleados.get(opcionempleado));
-				System.out.println("\t- Sueldo Neto: "+empleados.get(opcionempleado).sueldoNeto());
+				System.out.println("\t- Sueldo Neto Final: "+empleados.get(opcionempleado).sueldoNeto()+"\n");
+			
+				
+				System.out.println("\t- Inmdenizacion Final: "+empleados.get(opcionempleado).indemnizacion()+"\n");
 				//				mozoalmacen0.sueldoNeto();
 				//Modulo no terminado falta hacer que eliga un empleado y calcule el sueldo y la indemnizacion
 				//SI EL EMPLEADO NO TRABAJA 1 AÑO EXACTO NO COBRA POR PRINGADO
@@ -276,7 +281,7 @@ public class Principal {
 			empleados.add(administracion);
 			break;
 		case 5:
-			Directivo directivo =new Directivo(nombre, apellido1, apellido2, dni, puesto, aniosantiguedad,  diasantiguedad);
+			Directivo directivo =new Directivo(nombre, apellido1, apellido2, dni, puesto, aniosantiguedad,  diasantiguedad,true);
 			empleados.add(directivo);
 			break;	
 			
